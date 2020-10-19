@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  redis:
+    build: ./redis
+    expose:
+      - "6379"
+  audio_collector_1:
+    environment:
+      - CHANNEL=1
+    build: ./audio_collector
+    privileged: true
+    depends_on:
+      - redis
+  audio_collector_2:
+    environment:
+      - CHANNEL=2
+    build: ./audio_collector
+    privileged: true
+    depends_on:
+      - redis
+  classifier:
+    build: ./classifier
+    depends_on:
+      - redis
+  cloud_publisher:
+    build: ./cloud_publisher
+    depends_on:
+      - redis
