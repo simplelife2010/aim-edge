@@ -10,9 +10,7 @@ services:
   audio_collector_1:
     env_file:
       - .env.audio_collector
-      - "${SERIAL_NUMBER}/.env.audio_collector"
-    environment:
-      - CHANNEL=1
+      - "${SERIAL_NUMBER}/.env.audio_collector_1"
     image: "${REGISTRY_USER}/audio_collector:${AUDIO_COLLECTOR_TAG}"
     privileged: true
     depends_on:
@@ -20,9 +18,7 @@ services:
   audio_collector_2:
     env_file:
       - .env.audio_collector
-      - "${SERIAL_NUMBER}/.env.audio_collector"
-    environment:
-      - CHANNEL=2
+      - "${SERIAL_NUMBER}/.env.audio_collector_2"
     image: "${REGISTRY_USER}/audio_collector:${AUDIO_COLLECTOR_TAG}"
     privileged: true
     depends_on:
