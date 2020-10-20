@@ -23,7 +23,6 @@ services:
   classifier:
     env_file:
       - .env.classifier
-      - "${SERIAL_NUMBER}/.env.classifier"
     image: "${REGISTRY_USER}/classifier:${CLASSIFIER_TAG}"
     depends_on:
       - redis
