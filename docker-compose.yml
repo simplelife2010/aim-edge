@@ -29,7 +29,6 @@ services:
   cloud_publisher:
     env_file:
       - .cloud_publisher.env
-      - "${SERIAL_NUMBER}/.cloud_publisher.env"
     environment:
       - SERIAL_NUMBER=${SERIAL_NUMBER}
     image: "${REGISTRY_USER}/cloud_publisher:${CLOUD_PUBLISHER_TAG}"
