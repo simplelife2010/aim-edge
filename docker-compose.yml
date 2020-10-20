@@ -6,31 +6,32 @@ services:
       - "6379"
   audio_collector_1:
     env_file:
-      - .env.audio_collector
-      - "${SERIAL_NUMBER}/.env.audio_collector_1"
+      - .audio_collector.env
+      - "${SERIAL_NUMBER}/.audio_collector_1.env"
     image: "${REGISTRY_USER}/audio_collector:${AUDIO_COLLECTOR_TAG}"
     privileged: true
     depends_on:
       - redis
   audio_collector_2:
     env_file:
-      - .env.audio_collector
-      - "${SERIAL_NUMBER}/.env.audio_collector_2"
+      - .audio_collector.env
+      - "${SERIAL_NUMBER}/.audio_collector_2.env"
     image: "${REGISTRY_USER}/audio_collector:${AUDIO_COLLECTOR_TAG}"
     privileged: true
     depends_on:
       - redis
   classifier:
     env_file:
-      - .env.classifier
+      - .classifier.env
     image: "${REGISTRY_USER}/classifier:${CLASSIFIER_TAG}"
     depends_on:
       - redis
   cloud_publisher:
     env_file:
-      - .env.cloud_publisher
-      - "${SERIAL_NUMBER}/.env.cloud_publisher"
-    env_file: .env.cloud_publisher
+      - .cloud_publisher.env
+      - "${SERIAL_NUMBER}/.cloud_publisher.env"
+    environment:
+      - SERIAL_NUMBER=${SERIAL_NUMBER}
     image: "${REGISTRY_USER}/cloud_publisher:${CLOUD_PUBLISHER_TAG}"
     depends_on:
       - redis
