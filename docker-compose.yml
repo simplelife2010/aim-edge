@@ -28,9 +28,8 @@ services:
       - redis
   cloud_publisher:
     env_file:
+      - ../.device.env
       - .cloud_publisher.env
-    environment:
-      - SERIAL_NUMBER=${SERIAL_NUMBER}
     image: "${REGISTRY_USER}/cloud_publisher:${CLOUD_PUBLISHER_TAG}"
     depends_on:
       - redis
