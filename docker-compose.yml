@@ -29,6 +29,7 @@ services:
   cloud_publisher:
     env_file:
       - ../.device.env
+      - .env
       - .cloud_publisher.env
     image: "${REGISTRY_USER}/cloud_publisher:${CLOUD_PUBLISHER_TAG}"
     depends_on:
