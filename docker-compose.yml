@@ -6,6 +6,7 @@ services:
       - "6379"
   audio_collector_1:
     env_file:
+      - .env
       - .audio_collector.env
       - "${SERIAL_NUMBER}/.audio_collector_1.env"
     image: "${REGISTRY_USER}/audio_collector:${AUDIO_COLLECTOR_TAG}"
@@ -14,6 +15,7 @@ services:
       - redis
   audio_collector_2:
     env_file:
+      - .env
       - .audio_collector.env
       - "${SERIAL_NUMBER}/.audio_collector_2.env"
     image: "${REGISTRY_USER}/audio_collector:${AUDIO_COLLECTOR_TAG}"
@@ -29,7 +31,6 @@ services:
   cloud_publisher:
     env_file:
       - ../.device.env
-      - .env
       - .cloud_publisher.env
     image: "${REGISTRY_USER}/cloud_publisher:${CLOUD_PUBLISHER_TAG}"
     depends_on:
